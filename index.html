@@ -9,5 +9,36 @@
     <script type="module" src="/src/main.ts"></script>
   </head>
   <body>
+    <div class="calculator">
+      <div class="calculator__screen">
+        <output class="calculator__output calculator__output--secondary"></output>
+        <output class="calculator__output calculator__output--main">0</output>
+      </div>
+
+      <div class="calculator__btns">
+        <button class="calculator__btn" data-action="clear">Clear</button>
+        <button class="calculator__btn" data-action="delete">Delete</button>
+
+        <button class="calculator__btn" data-number="7">7</button>
+        <button class="calculator__btn" data-number="8">8</button>
+        <button class="calculator__btn" data-number="9">9</button>
+        <button class="calculator__btn" data-operator="divide">÷</button>
+
+        <button class="calculator__btn" data-number="4">4</button>
+        <button class="calculator__btn" data-number="5">5</button>
+        <button class="calculator__btn" data-number="6">6</button>
+        <button class="calculator__btn" data-operator="multiply">×</button>
+
+        <button class="calculator__btn" data-number="1">1</button>
+        <button class="calculator__btn" data-number="2">2</button>
+        <button class="calculator__btn" data-number="3">3</button>
+        <button class="calculator__btn" data-operator="subtract">−</button>
+
+        <button class="calculator__btn" data-number="0">0</button>
+        <button class="calculator__btn" data-separator="decimal-point">.</button>
+        <button class="calculator__btn" data-action="equals">=</button>
+        <button class="calculator__btn" data-operator="add">+</button>
+      </div>
+    </div>
   </body>
 </html>
