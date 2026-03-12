@@ -38,11 +38,11 @@ body {
 }
 
 .calculator__output--secondary {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .calculator__output--primary {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .calculator__controls {
@@ -68,4 +68,14 @@ body {
 
 .calculator__btn--square {
   aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 360px) {
+  .calculator__output--secondary {
+    font-size: 1.25rem;
+  }
+
+.calculator__output--primary {
+    font-size: 1.75rem;
+  }
 }

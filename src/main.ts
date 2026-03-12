@@ -17,9 +17,6 @@ const state = {
   operator: null as Operator | null,
   secondOperand: "",
   error: false,
-
-  history: "",
-  rawSecondOperand: "",
 };
 
 const operatorMap: Record<Operator, string> = {
@@ -43,9 +40,6 @@ function appendOperand(operand: string) {
     if (state.secondOperand === "0") state.secondOperand = "";
     
     state.secondOperand += operand;
-
-    state.rawSecondOperand += operand;
-
     primaryOutput.value = state.secondOperand;
   }
 
@@ -176,5 +170,19 @@ function handleCalculatorInput(e: Event) {
   if (action === "equals") handleEquals();
 }
 
-calculatorControls.addEventListener("click", handleCalculatorInput);
+function handleKeyboardInput(e: KeyboardEvent) {
+  const key = e.key;
 
+  if (key >= "0" && key <= "9") appendOperand(key);
+  if (key === ".") appendDecimalPoint();
+  if (key === "+") setOperator("add");
+  if (key === "-") setOperator("subtract");
+  if (key === "*") setOperator("multiply");
+  if (key === "/") { e.preventDefault(); setOperator("divide") }
+  if (key === "=" || key === "Enter") { e.preventDefault(); handleEquals() }
+  if (key === "Backspace") deleteOperand();
+  if (key === "Escape" || key === "Delete") clear();
+}
+
+document.addEventListener("keydown", handleKeyboardInput);
+calculatorControls.addEventListener("click", handleCalculatorInput);
