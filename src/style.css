@@ -80,7 +80,9 @@ body {
   background-color: #88f;
 }
 
-.calculator__btn[data-digit] {
+.calculator__btn[data-digit],
+.calculator__btn[data-decimal-point],
+.calculator__btn[data-action="equals"] {
   background-color: #eee;
 }
 
@@ -105,11 +107,15 @@ body {
     background-color: #66f;
   }
 
-  .calculator__btn[data-digit]:hover {
-      background-color: #ddd;
+  .calculator__btn[data-digit]:hover,
+  .calculator__btn[data-decimal-point]:hover,
+  .calculator__btn[data-action="equals"]:hover {
+    background-color: #ddd;
   }
 
-  .calculator__btn[data-digit]:active {
+  .calculator__btn[data-digit]:active,
+  .calculator__btn[data-decimal-point]:active,
+  .calculator__btn[data-action="equals"]:active {
     background-color: #ccc;
   }
 
@@ -121,4 +127,3 @@ body {
     background-color: #fa4;
   }
 }
-
