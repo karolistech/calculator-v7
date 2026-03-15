@@ -83,7 +83,7 @@ function setOperator(operator: Operator) {
 function chainOperation() {
   if (state.operator === null) return;
 
-  const result = evaluate(state.firstOperand, state.operator, state.secondOperand);
+  const result = calculate(state.firstOperand, state.operator, state.secondOperand);
   const formatted = formatResult(result);
 
   primaryOutput.value = formatted;
@@ -97,11 +97,11 @@ function chainOperation() {
   state.secondOperand = "";
 }
 
-function finalizeOperation() {
+function finishOperation() {
   if (state.firstOperand === "" || state.operator === null || state.error) return;
   if (state.secondOperand === "") state.secondOperand = state.firstOperand;
 
-  const result = evaluate(state.firstOperand, state.operator, state.secondOperand);
+  const result = calculate(state.firstOperand, state.operator, state.secondOperand);
   const formatted = formatResult(result);
 
   secondaryOutput.value = `${state.expression} ${normalizeOperand(state.secondOperand)} =`;
@@ -118,7 +118,7 @@ function finalizeOperation() {
   state.expression = "";
 }
 
-function evaluate(firstOperand: string, operator: Operator, secondOperand: string): number {
+function calculate(firstOperand: string, operator: Operator, secondOperand: string): number {
   const a = Number(firstOperand);
   const b = Number(secondOperand);
 
@@ -160,7 +160,7 @@ function clear() {
   primaryOutput.value = "0";
 }
 
-function backspace() {
+function del() {
   if (state.error) return;
 
   if (state.operator === null) {
@@ -183,8 +183,8 @@ function handleButtonInput(e: Event) {
   if (operator) setOperator(operator as Operator);
   if (decimalPoint) appendDecimalPoint();
   if (action === "clear") clear();
-  if (action === "backspace") backspace();
-  if (action === "equals") finalizeOperation();
+  if (action === "del") del();
+  if (action === "equals") finishOperation();
 }
 
 function handleKeyboardInput(e: KeyboardEvent) {
@@ -196,9 +196,9 @@ function handleKeyboardInput(e: KeyboardEvent) {
   if (key === "-") setOperator("subtract");
   if (key === "*") setOperator("multiply");
   if (key === "/") { e.preventDefault(); setOperator("divide"); }
-  if (key === "=" || key === "Enter") { e.preventDefault(); finalizeOperation(); }
-  if (key === "Escape" || key === "Delete") clear();
-  if (key === "Backspace") backspace();
+  if (key === "=" || key === "Enter") { e.preventDefault(); finishOperation(); }
+  if (key === "Escape") clear();
+  if (key === "Backspace") del();
 }
 
 document.addEventListener("keydown", handleKeyboardInput);
